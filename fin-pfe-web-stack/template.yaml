@@ -45,13 +45,13 @@ spec:
       input:
         url: ./content
         values:
-          name: ${{ parameters.name }}
+          name: fin-pfe-${{ parameters.name }}-web-stack
 
     - id: publish
       name: Publish
       action: publish:github
       input:
-        description: This is ${{ parameters.name }}
+        description: This is Fin ${{ parameters.name }} web stack
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         repoVisibility: public
