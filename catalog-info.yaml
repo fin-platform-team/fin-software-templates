@@ -4,7 +4,6 @@ metadata:
   name: fin-pfe-templates
   description: Fin Platform Engineering Templates
   annotations:
-    backstage.io/techdocs-ref: dir:.
 spec:
   targets:
     - ./fin-pfe-web-stack/template.yaml
