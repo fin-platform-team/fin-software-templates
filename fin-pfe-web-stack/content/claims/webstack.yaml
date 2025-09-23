@@ -1,6 +1,6 @@
 apiVersion: kro.run/v1alpha1
 kind: FinWebAppStack
 metadata:
-  name: "pfe-web-stack-${{ values.name | dump }}"
+  name: 'pfe-web-stack-${{ values.name | dump }}'
 spec:
-  name: "pfe-web-team1-${{ values.name | dump }}"
+  name: 'pfe-web-team1-${{ values.name | dump }}'
