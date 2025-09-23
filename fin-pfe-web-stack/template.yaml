@@ -1,15 +1,15 @@
 apiVersion: scaffolder.backstage.io/v1beta3
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
   name: fin-pfe-web-stack
   title: Fin Web Stack
   description: |
-    Web stack that creates EKS cluster and underlying application requirements with
-    Fin PFE best practices baked in (e.g: Tagging, Security etc..)
+    Web stack that creates EKS cluster and underlying application requirements with Fin PFE best practices baked in (e.g: Tagging, Security etc..)
   tags:
     - eks
     - fin-web
+    - aws
+    - infrastructure
 spec:
   owner: group:default/fin-platform-engineering
   type: service
@@ -53,25 +53,14 @@ spec:
       input:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        defaultBranch: 'main'
+        defaultBranch: main
 
     - id: register
       name: Register
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
-
-    - id: notify
-      name: Notify
-      action: notification:send
-      input:
-        recipients: entity
-        entityRefs:
-          - user:default/guest
-        title: 'Template executed'
-        info: 'Your template has been executed'
-        severity: 'normal'
+        catalogInfoPath: /catalog-info.yaml
 
   output:
     links:
