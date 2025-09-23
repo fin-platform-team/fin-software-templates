@@ -3,4 +3,4 @@ kind: FinWebAppStack
 metadata:
   name: ${{ values.name | dump }}
 spec:
-  name: ${{ values.name | dump }}
+  projectName: ${{ values.name | dump }}
