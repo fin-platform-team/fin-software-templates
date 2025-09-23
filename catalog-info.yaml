@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: fin-pfe-templates
+  description: Fin Platform Engineering Templates
+spec:
+  targets:
+    - ./fin-pfe-web-stack/template.yaml
