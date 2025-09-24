@@ -61,21 +61,20 @@ spec:
       action: fetch:template
       input:
         url: ./content/argocd
-        targetPath: "./${{ parameters.name }}"
+        targetPath: "./argocd/${{ parameters.name }}"
         values:
           name: ${{ parameters.name }}
     
     - id: publish-argo-app
       name: PublishArgoApp
-      action: github:repo:push
+      action: publish:github:pull-request
       input:
-        gitCommitMessage: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
+        description: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
+        commitMessage: "Claim submitted for ${{ parameters.name }} from Backstage"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
-        sourcePath: argocd
-        requireBranchesToBeUpToDate: false
-        defaultBranch: test
-        protectDefaultBranch: false
-        requiredLinearHistory: false
+        branchName: ${{ parameters.name }}
+        title: "${{ parameters.name }} - Claim"
+        targetBranchName: "main"
 
     # - id: register
     #   name: Register
