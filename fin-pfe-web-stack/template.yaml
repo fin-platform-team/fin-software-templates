@@ -61,9 +61,16 @@ spec:
       action: fetch:template
       input:
         url: ./content/argocd
-        targetPath: "./argocd/${{ parameters.name }}"
         values:
           name: ${{ parameters.name }}
+
+    - id: rename-claim-file
+      name: Rename Claim File
+      action: fs:rename
+      input:
+        files:
+          - from: ./application.yaml
+            to: "${{ parameters.name }}-claim.yaml"
     
     - id: publish-argo-app
       name: PublishArgoApp
