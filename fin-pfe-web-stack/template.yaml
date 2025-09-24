@@ -55,16 +55,24 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         repoVisibility: public
+
+    - id: fetch-argo-base
+      name: Fetch Argo Base
+      action: fetch:template
+      input:
+        url: ./content/argocd
+        targetPath: "./claims/${{ parameters.name }}"
+        values:
+          name: ${{ parameters.name }}
     
     - id: publish-argo-app
       name: PublishArgoApp
       action: publish:github
       input:
         description: This is Fin ${{ parameters.name }} web stack ArgoCD Application
-        repoUrl: "https://github.com/fin-platform-team/fin-claims-aoa"
+        repoUrl: "https://github.com/fin-platform-team/fin-catalog-claims"
         defaultBranch: main
         repoVisibility: public
-
 
     - id: register
       name: Register
