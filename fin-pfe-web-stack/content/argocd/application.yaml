@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://github.com/fin-platform-team/${{ values.name }}"
+    repoURL: "https://github.com/fin-platform-team/fin-catalog-claims"
     targetRevision: HEAD
-    path: "claims-${{ values.name }}"
+    path: "claims/${{ values.name }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
