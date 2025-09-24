@@ -69,10 +69,9 @@ spec:
       name: PublishArgoApp
       action: github:repo:push
       input:
-        description: This is Fin ${{ parameters.name }} web stack ArgoCD Application
+        gitCommitMessage: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
         defaultBranch: main
-        repoVisibility: public
 
     - id: register
       name: Register
