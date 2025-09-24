@@ -70,7 +70,7 @@ spec:
       action: publish:github
       input:
         description: This is Fin ${{ parameters.name }} web stack ArgoCD Application
-        repoUrl: "https://github.com/fin-platform-team/fin-catalog-claims"
+        repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
         defaultBranch: main
         repoVisibility: public
 
