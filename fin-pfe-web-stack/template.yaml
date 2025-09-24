@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: fin-pfe-web-stack
+  name: fin-pfe-web-stackv2
   title: Fin Web Stack
   description: |
     Creates Fin's Opinionated Web Stack
