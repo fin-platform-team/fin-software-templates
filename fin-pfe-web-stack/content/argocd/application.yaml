@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "fin-pfe-claims-${{ values.name }}"
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/fin-platform-team/${{ values.name }}"
+    targetRevision: HEAD
+    path: "claims-${{ values.name }}"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

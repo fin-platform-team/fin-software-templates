@@ -4,7 +4,7 @@ metadata:
   name: fin-pfe-web-stack
   title: Fin Web Stack
   description: |
-    Web stack that creates EKS cluster and underlying application requirements with Fin PFE best practices baked in (e.g: Tagging, Security etc..)
+    Creates Fin's Opinionated Web Stack
   tags:
     - eks
     - fin-web
@@ -55,6 +55,16 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         defaultBranch: main
         repoVisibility: public
+    
+    - id: publish-argo-app
+      name: PublishArgoApp
+      action: publish:github
+      input:
+        description: This is Fin ${{ parameters.name }} web stack ArgoCD Application
+        repoUrl: "https://github.com/fin-platform-team/fin-claims-aoa"
+        defaultBranch: main
+        repoVisibility: public
+
 
     - id: register
       name: Register
@@ -65,8 +75,10 @@ spec:
 
   output:
     links:
-      - title: Repository
+      - title: Claim Repository
         url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Argo App Repository
+        url: ${{ steps['publish-argo-app'].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps['register'].output.entityRef }}
