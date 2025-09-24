@@ -71,7 +71,6 @@ spec:
       input:
         gitCommitMessage: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
-        defaultBranch: test
         sourcePath: argocd
 
     # - id: register
