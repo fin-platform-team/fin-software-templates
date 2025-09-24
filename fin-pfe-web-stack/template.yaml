@@ -67,7 +67,7 @@ spec:
     
     - id: publish-argo-app
       name: PublishArgoApp
-      action: publish:github:push
+      action: github:repo:push
       input:
         description: This is Fin ${{ parameters.name }} web stack ArgoCD Application
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
