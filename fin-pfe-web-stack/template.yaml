@@ -39,22 +39,22 @@ spec:
               - github.com
 
   steps:
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./content
-        values:
-          name: fin-pfe-${{ parameters.name }}-web-stack
+    # - id: fetch-base
+    #   name: Fetch Base
+    #   action: fetch:template
+    #   input:
+    #     url: ./content
+    #     values:
+    #       name: fin-pfe-${{ parameters.name }}-web-stack
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        description: This is Fin ${{ parameters.name }} web stack
-        repoUrl: ${{ parameters.repoUrl }}
-        defaultBranch: main
-        repoVisibility: public
+    # - id: publish
+    #   name: Publish
+    #   action: publish:github
+    #   input:
+    #     description: This is Fin ${{ parameters.name }} web stack
+    #     repoUrl: ${{ parameters.repoUrl }}
+    #     defaultBranch: main
+    #     repoVisibility: public
 
     - id: fetch-argo-base
       name: Fetch Argo Base
@@ -72,20 +72,21 @@ spec:
         gitCommitMessage: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
         defaultBranch: main
+        requiredLinearHistory: false
 
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: /catalog-info.yaml
+    # - id: register
+    #   name: Register
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+    #     catalogInfoPath: /catalog-info.yaml
 
   output:
     links:
-      - title: Claim Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
+      # - title: Claim Repository
+      #   url: ${{ steps['publish'].output.remoteUrl }}
       - title: Argo App Repository
         url: ${{ steps['publish-argo-app'].output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+      # - title: Open in catalog
+      #   icon: catalog
+      #   entityRef: ${{ steps['register'].output.entityRef }}
