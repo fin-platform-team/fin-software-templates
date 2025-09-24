@@ -61,7 +61,7 @@ spec:
       action: fetch:template
       input:
         url: ./content/argocd
-        targetPath: "./claims/${{ parameters.name }}"
+        targetPath: "./argocd/${{ parameters.name }}"
         values:
           name: ${{ parameters.name }}
     
