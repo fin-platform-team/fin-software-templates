@@ -83,7 +83,7 @@ spec:
           - from: ./application.yaml
             to: "${{ parameters.name }}-claim-argo-app.yaml"
     
-    - id: publish-argo-app
+    - id: publish-argo-app-file
       name: PublishArgoApp
       action: publish:github:pull-request
       input:
@@ -101,14 +101,16 @@ spec:
       input:
         # repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
         # catalogInfoPath: /catalog-info.yaml
-        catalogInfoUrl: "https://github.com/fin-platform-team/fin-catalog-claims/claims/${{ parameters.name }}"
+        catalogInfoUrl: "https://github.com/fin-platform-team/fin-catalog-claims/blob/main/claims/${{ parameters.name }}/catalog-info.yaml"
 
   output:
     links:
       # - title: Claim Repository
       #   url: ${{ steps['publish'].output.remoteUrl }}
       - title: Argo App Repository
-        url: ${{ steps['publish-argo-app'].output.remoteUrl }}
+        url: ${{ steps['publish-argo-app-file'].output.remoteUrl }}
+      - title: Claim App Repository
+        url: ${{ steps['publish-claim-file'].output.remoteUrl }}   
       # - title: Open in catalog
       #   icon: catalog
       #   entityRef: ${{ steps['register'].output.entityRef }}
