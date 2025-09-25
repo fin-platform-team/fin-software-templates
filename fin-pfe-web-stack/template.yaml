@@ -82,7 +82,7 @@ spec:
         branchName: ${{ parameters.name }}
         title: "${{ parameters.name }} - Claim"
         targetBranchName: "main"
-        targetPath: "argocd"
+        targetPath: "./argocd"
 
     # - id: register
     #   name: Register
