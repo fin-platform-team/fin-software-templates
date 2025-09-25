@@ -79,7 +79,7 @@ spec:
       name: Delete files
       input:
         files:
-          - claims/*
+          - "./claims/${{ parameters.name }}/${{ parameters.name }}-claim.yaml"
 
     - id: rename-claim-argo-file
       name: Rename Claim Argo File
