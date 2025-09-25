@@ -105,7 +105,7 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: "https://github.com?repo=fin-catalog-claims&owner=fin-platform-team"
+        repoContentsUrl: "https://github.com/fin-catalog-claims/fin-platform-team"
         catalogInfoPath: "./claims/${{ parameters.name }}/catalog-info.yaml"
 
   output:
