@@ -62,7 +62,6 @@ spec:
         description: "This is Fin ${{ parameters.name }} web stack claim"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
         branchName: ${{ parameters.name }}
-        repoVisibility: public
         title: "${{ parameters.name }} - Claim"
         targetBranchName: "main"
         targetPath: "./claims/${{ parameters.name }}"
