@@ -26,17 +26,6 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 5
-    # - title: Choose a location
-    #   required:
-    #     - repoUrl
-    #   properties:
-    #     repoUrl:
-    #       title: Repository Location
-    #       type: string
-    #       ui:field: RepoUrlPicker
-    #       ui:options:
-    #         allowedHosts:
-    #           - github.com
 
   steps:
     - id: fetch-claim-base
@@ -100,13 +89,6 @@ spec:
         title: "${{ parameters.name }} - Claim Argo App"
         targetBranchName: "main"
         targetPath: "./claims/${{ parameters.name }}"
-
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: "https://github.com/fin-catalog-claims/fin-platform-team"
-        catalogInfoPath: "./claims/${{ parameters.name }}/catalog-info.yaml"
 
   output:
     links:
