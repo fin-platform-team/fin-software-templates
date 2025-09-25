@@ -95,7 +95,4 @@ spec:
       - title: Argo App Repository
         url: ${{ steps['publish-argo-app-file'].output.remoteUrl }}
       - title: Claim App Repository
-        url: ${{ steps['publish-claim-file'].output.remoteUrl }}   
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+        url: ${{ steps['publish-claim-file'].output.remoteUrl }}
