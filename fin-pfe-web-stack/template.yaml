@@ -93,7 +93,7 @@ spec:
         branchName: ${{ parameters.name }}
         title: "${{ parameters.name }} - Claim Argo App"
         targetBranchName: "main"
-        targetPath: "./apps"
+        targetPath: "./claims"
 
     - id: register
       name: Register
