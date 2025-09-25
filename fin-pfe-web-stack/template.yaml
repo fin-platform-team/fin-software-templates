@@ -2,9 +2,9 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: fin-pfe-web-stackv2
-  title: Fin Web Stack
+  title: Fin - AWS - Webapp Stack
   description: |
-    Creates Fin's Opinionated Web Stack
+    Creates Fin's Opinionated Web Application Stack on AWS
   tags:
     - eks
     - fin-web
@@ -39,22 +39,33 @@ spec:
     #           - github.com
 
   steps:
-    # - id: fetch-base
-    #   name: Fetch Base
-    #   action: fetch:template
-    #   input:
-    #     url: ./content
-    #     values:
-    #       name: fin-pfe-${{ parameters.name }}-web-stack
+    - id: fetch-claim-base
+      name: Fetch Claim Base
+      action: fetch:template
+      input:
+        url: ./content/claims
+        values:
+          name: ${{ parameters.name }}
 
-    # - id: publish
-    #   name: Publish
-    #   action: publish:github
-    #   input:
-    #     description: This is Fin ${{ parameters.name }} web stack
-    #     repoUrl: ${{ parameters.repoUrl }}
-    #     defaultBranch: main
-    #     repoVisibility: public
+    - id: rename-claim-file
+      name: Rename Claim File
+      action: fs:rename
+      input:
+        files:
+          - from: ./webstack.yaml
+            to: "${{ parameters.name }}-claim.yaml"
+
+    - id: publish-claim-file
+      name: PublishClaims
+      action: publish:github:pull-request
+      input:
+        description: "This is Fin ${{ parameters.name }} web stack claim"
+        repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
+        branchName: ${{ parameters.name }}
+        repoVisibility: public
+        title: "${{ parameters.name }} - Claim"
+        targetBranchName: "main"
+        targetPath: "./claims/${{ parameters.name }}"
 
     - id: fetch-argo-base
       name: Fetch Argo Base
@@ -64,13 +75,13 @@ spec:
         values:
           name: ${{ parameters.name }}
 
-    - id: rename-claim-file
-      name: Rename Claim File
+    - id: rename-claim-argo-file
+      name: Rename Claim Argo File
       action: fs:rename
       input:
         files:
           - from: ./application.yaml
-            to: "${{ parameters.name }}-claim.yaml"
+            to: "${{ parameters.name }}-claim-argo-app.yaml"
     
     - id: publish-argo-app
       name: PublishArgoApp
@@ -78,18 +89,19 @@ spec:
       input:
         description: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
         commitMessage: "Claim submitted for ${{ parameters.name }} from Backstage"
-        repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
+        repoUrl: "github.com?repo=fin-claims-aoa&owner=fin-platform-team"
         branchName: ${{ parameters.name }}
-        title: "${{ parameters.name }} - Claim"
+        title: "${{ parameters.name }} - Claim Argo App"
         targetBranchName: "main"
-        targetPath: "./argocd"
+        targetPath: "./apps"
 
-    # - id: register
-    #   name: Register
-    #   action: catalog:register
-    #   input:
-    #     repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-    #     catalogInfoPath: /catalog-info.yaml
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        # repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        # catalogInfoPath: /catalog-info.yaml
+        catalogInfoUrl: "https://github.com/fin-platform-team/fin-catalog-claims/claims/${{ parameters.name }}"
 
   output:
     links:
