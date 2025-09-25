@@ -5,6 +5,7 @@ metadata:
   description: Fin Platform Engineering Templates
   annotations:
     backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: fin-platform-team/fin-software-templates
 spec:
   targets:
     - ./fin-pfe-web-stack/template.yaml
