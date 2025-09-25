@@ -70,9 +70,16 @@ spec:
       name: Fetch Argo Base
       action: fetch:template
       input:
-        url: ./content/argocd/application.yaml
+        url: ./content/argocd
         values:
           name: ${{ parameters.name }}
+
+    - action: fs:delete
+      id: deleteFiles
+      name: Delete files
+      input:
+        files:
+          - claims/*
 
     - id: rename-claim-argo-file
       name: Rename Claim Argo File
