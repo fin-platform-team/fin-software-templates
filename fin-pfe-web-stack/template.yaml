@@ -70,7 +70,7 @@ spec:
       name: Fetch Argo Base
       action: fetch:template
       input:
-        url: ./content/argocd
+        url: ./content/argocd/application.yaml
         values:
           name: ${{ parameters.name }}
 
@@ -92,7 +92,7 @@ spec:
         branchName: ${{ parameters.name }}
         title: "${{ parameters.name }} - Claim Argo App"
         targetBranchName: "main"
-        targetPath: "./claims"
+        targetPath: "./claims/${{ parameters.name }}"
 
     - id: register
       name: Register
