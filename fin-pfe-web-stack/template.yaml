@@ -79,7 +79,7 @@ spec:
       name: Delete files
       input:
         files:
-          - "./claims/${{ parameters.name }}/${{ parameters.name }}-claim.yaml"
+          - "*-claim.yaml"
 
     - id: rename-claim-argo-file
       name: Rename Claim Argo File
@@ -105,18 +105,15 @@ spec:
       name: Register
       action: catalog:register
       input:
-        # repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        # catalogInfoPath: /catalog-info.yaml
-        catalogInfoUrl: "https://github.com/fin-platform-team/fin-catalog-claims/blob/main/claims/${{ parameters.name }}/catalog-info.yaml"
+        repoContentsUrl: "https://github.com?repo=fin-catalog-claims&owner=fin-platform-team"
+        catalogInfoPath: "./claims/${{ parameters.name }}/catalog-info.yaml"
 
   output:
     links:
-      # - title: Claim Repository
-      #   url: ${{ steps['publish'].output.remoteUrl }}
       - title: Argo App Repository
         url: ${{ steps['publish-argo-app-file'].output.remoteUrl }}
       - title: Claim App Repository
         url: ${{ steps['publish-claim-file'].output.remoteUrl }}   
-      # - title: Open in catalog
-      #   icon: catalog
-      #   entityRef: ${{ steps['register'].output.entityRef }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
