@@ -6,10 +6,10 @@ metadata:
   description: |
     Creates Fin's Opinionated Web Application Stack on AWS
   tags:
-    - eks
     - fin-web
     - aws
     - infrastructure
+    - s3
 spec:
   owner: group:default/fin-platform-engineering
   type: service
