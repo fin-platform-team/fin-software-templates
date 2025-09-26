@@ -6,4 +6,5 @@ The following are available as of the latest commits:
 
 | **Pattern (Dir)** | **Description** |
 |-----------|-------------|
-| **Web Stack (web-stack)** | Web stack pattern that creates resources that were blessed by security, ops and other teams|
+| **Web Stack (fin-pfe-web-stack)** | Web stack pattern that creates resources that were blessed by security, ops and other teams |
+| **EKS Cluster (fin-pfe-stack)** | EKS Cluster - AutoMode |
