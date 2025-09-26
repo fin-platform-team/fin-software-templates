@@ -1,0 +1,7 @@
+apiVersion: kro.run/v1alpha1
+kind: FinEKSCluster
+metadata:
+  name: "pfe-eks-${{ values.name }}"
+spec:
+  ClusterName: "pfe-eks-${{ values.name }}"
+  ClusterVersion: "1.33"

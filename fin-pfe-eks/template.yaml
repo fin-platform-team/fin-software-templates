@@ -1,28 +1,27 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: fin-pfe-web-stackv2
-  title: Fin - AWS - Webapp Stack
+  name: fin-pfe-eks
+  title: Fin - EKS Cluster
   description: |
-    Creates Fin's Opinionated Web Application Stack on AWS
+    Creates Fin's Opinionated Amazon EKS cluster
   tags:
     - eks
-    - fin-web
     - aws
-    - infrastructure
+    - containers
 spec:
   owner: group:default/fin-platform-engineering
   type: service
 
   parameters:
-    - title: Fill in Stack requirements
+    - title: Fill in Cluster requirements
       required:
         - name
       properties:
         name:
-          title: Name
+          title: Cluster Name
           type: string
-          description: Unique name of the component
+          description: Cluster Name for provisioning
           ui:autofocus: true
           ui:options:
             rows: 5
@@ -41,14 +40,14 @@ spec:
       action: fs:rename
       input:
         files:
-          - from: ./webstack.yaml
+          - from: ./cluster.yaml
             to: "${{ parameters.name }}-claim.yaml"
 
     - id: publish-claim-file
       name: PublishClaims
       action: publish:github:pull-request
       input:
-        description: "This is Fin ${{ parameters.name }} web stack claim"
+        description: "This is Fin ${{ parameters.name }} EKS Cluster claim"
         repoUrl: "github.com?repo=fin-catalog-claims&owner=fin-platform-team"
         branchName: ${{ parameters.name }}
         title: "${{ parameters.name }} - Claim"
@@ -82,7 +81,7 @@ spec:
       name: PublishArgoApp
       action: publish:github:pull-request
       input:
-        description: "This is Fin ${{ parameters.name }} web stack ArgoCD Application"
+        description: "This is Fin ${{ parameters.name }} EKS Cluster ArgoCD Application"
         commitMessage: "Claim submitted for ${{ parameters.name }} from Backstage"
         repoUrl: "github.com?repo=fin-claims-aoa&owner=fin-platform-team"
         branchName: ${{ parameters.name }}
