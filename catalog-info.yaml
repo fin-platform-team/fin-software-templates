@@ -9,3 +9,4 @@ metadata:
 spec:
   targets:
     - ./fin-pfe-web-stack/template.yaml
+    - ./fin-pfe-eks/template.yaml
