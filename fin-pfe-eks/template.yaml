@@ -17,19 +17,11 @@ spec:
     - title: Fill in Cluster requirements
       required:
         - name
-        - region
       properties:
         name:
           title: Cluster Name
           type: string
           description: Cluster Name for provisioning
-          ui:autofocus: true
-          ui:options:
-            rows: 5
-        region:
-          title: Cluster Region
-          type: string
-          description: Cluster Region
           ui:autofocus: true
           ui:options:
             rows: 5
