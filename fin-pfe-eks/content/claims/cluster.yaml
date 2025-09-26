@@ -3,4 +3,5 @@ kind: FinEKSCluster
 metadata:
   name: "pfe-eks-${{ values.name }}"
 spec:
-  name: "pfe-eks-${{ values.name }}"
+  ClusterName: "pfe-eks-${{ values.name }}"
+  ClusterVersion: "1.33"
