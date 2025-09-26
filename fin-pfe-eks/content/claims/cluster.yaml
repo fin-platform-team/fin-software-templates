@@ -1,6 +1,6 @@
 apiVersion: kro.run/v1alpha1
 kind: FinEKSCluster
 metadata:
-  name: pfe-eks-${{ values.name | dump }}
+  name: "pfe-eks-${{ values.name }}"
 spec:
-  name: pfe-eks-${{ values.name | dump }}
+  name: "pfe-eks-${{ values.name }}"
